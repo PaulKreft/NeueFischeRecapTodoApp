@@ -17,10 +17,29 @@ public class TodoService {
         return todoRepository.getTodos();
     }
 
+    public Todo getTodoById(String id) {
+        return todoRepository.getTodoById(id);
+    }
+
     public Todo addTodo(TodoRequest todoRequest) {
         Todo todo = new Todo(todoRequest);
 
         todoRepository.addTodo(todo);
         return todo;
+    }
+
+    public Todo updateTodoById(String id, TodoRequest todoRequest) {
+        return todoRepository.updateTodoById(id, todoRequest);
+    }
+
+
+    public Todo deleteTodoById(String id) {
+        Todo deletedTodo = todoRepository.getTodoById(id);
+
+        if (deletedTodo != null) {
+            todoRepository.removeTodoById(id);
+        }
+
+        return deletedTodo;
     }
 }
