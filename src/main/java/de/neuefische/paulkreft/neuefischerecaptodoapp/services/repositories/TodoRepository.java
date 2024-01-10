@@ -1,4 +1,4 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.models.repositories;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories;
 
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;

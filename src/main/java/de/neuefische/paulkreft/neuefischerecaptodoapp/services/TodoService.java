@@ -2,7 +2,7 @@ package de.neuefische.paulkreft.neuefischerecaptodoapp.services;
 
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.repositories.TodoRepository;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
