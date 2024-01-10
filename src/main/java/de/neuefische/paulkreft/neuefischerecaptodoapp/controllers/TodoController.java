@@ -22,14 +22,7 @@ public class TodoController {
 
     @GetMapping("{id}")
     public Todo getTodoById(@PathVariable String id) {
-
-        Todo todo = todoService.getTodoById(id);
-
-        if (todo == null) {
-            throw new NoSuchElementException();
-        }
-
-        return todo;
+        return todoService.getTodoById(id);
     }
 
     @PostMapping
@@ -39,23 +32,11 @@ public class TodoController {
 
     @PutMapping("{id}")
     public Todo updateTodoById(@PathVariable String id, @RequestBody TodoRequest todoRequest) {
-        Todo updatedTodo = todoService.updateTodoById(id, todoRequest);
-
-        if (updatedTodo == null) {
-            throw new NoSuchElementException();
-        }
-
-        return updatedTodo;
+        return todoService.updateTodoById(id, todoRequest);
     }
 
     @DeleteMapping("{id}")
     public Todo deleteTodoById(@PathVariable String id) {
-        Todo deletedTodo = todoService.deleteTodoById(id);
-
-        if (deletedTodo == null) {
-            throw new NoSuchElementException();
-        }
-
-        return deletedTodo;
+        return todoService.deleteTodoById(id);
     }
 }

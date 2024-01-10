@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,22 +52,23 @@ class TodoRepositoryTest {
         todoRepository.addTodo(todo);
 
         // When
-        Todo result = todoRepository.getTodoById("1");
+        Optional<Todo> result = todoRepository.getTodoById("1");
 
         // Then
-        assertNotNull(result);
-        assertEquals(todo.id(), result.id());
-        assertEquals(todo.description(), result.description());
-        assertEquals(todo.status(), result.status());
+        assertTrue(result.isPresent());
+        assertNotNull(result.get());
+        assertEquals(todo.id(), result.get().id());
+        assertEquals(todo.description(), result.get().description());
+        assertEquals(todo.status(), result.get().status());
     }
 
     @Test
-    void getTodoById_ShouldReturnNull_WhenTodoDoesNotExist() {
+    void getTodoById_ShouldBeEmpty_WhenTodoDoesNotExist() {
         // When
-        Todo result = todoRepository.getTodoById("nonexistent");
+        Optional<Todo> result = todoRepository.getTodoById("nonexistent");
 
         // Then
-        assertNull(result);
+        assertTrue(result.isEmpty());
     }
 
     @Test
@@ -77,25 +79,26 @@ class TodoRepositoryTest {
         TodoRequest updatedTodoRequest = new TodoRequest("Updated Task", TodoStatus.DONE);
 
         // When
-        Todo result = todoRepository.updateTodoById("1", updatedTodoRequest);
+        Optional<Todo> result = todoRepository.updateTodoById("1", updatedTodoRequest);
 
         // Then
-        assertNotNull(result);
-        assertEquals("1", result.id());
-        assertEquals(updatedTodoRequest.description(), result.description());
-        assertEquals(updatedTodoRequest.status(), result.status());
+        assertTrue(result.isPresent());
+        assertNotNull(result.get());
+        assertEquals("1", result.get().id());
+        assertEquals(updatedTodoRequest.description(), result.get().description());
+        assertEquals(updatedTodoRequest.status(), result.get().status());
     }
 
     @Test
-    void updateTodoById_ShouldReturnNull_WhenTodoDoesNotExist() {
+    void updateTodoById_ShouldBeEmpty_WhenTodoDoesNotExist() {
         // Given
         TodoRequest updatedTodoRequest = new TodoRequest("Updated Task", TodoStatus.DONE);
 
         // When
-        Todo result = todoRepository.updateTodoById("nonexistent", updatedTodoRequest);
+        Optional<Todo> result = todoRepository.updateTodoById("nonexistent", updatedTodoRequest);
 
         // Then
-        assertNull(result);
+        assertTrue(result.isEmpty());
     }
 
     @Test

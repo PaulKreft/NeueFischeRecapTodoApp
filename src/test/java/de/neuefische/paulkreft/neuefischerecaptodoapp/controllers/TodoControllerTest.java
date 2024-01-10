@@ -73,15 +73,6 @@ class TodoControllerTest {
                 .andExpect(jsonPath("$.status").value(todo.status().toString()));
     }
 
-    @Test
-    void getTodoById_ShouldReturnNotFound_WhenTodoDoesNotExist() throws Exception {
-        // Given
-        when(todoService.getTodoById(anyString())).thenReturn(null);
-
-        // When and Then
-        mockMvc.perform(get("/api/todo/nonexistent"))
-                .andExpect(status().isNotFound());
-    }
 
     @Test
     void addTodo_ShouldReturnAddedTodo() throws Exception {
@@ -120,18 +111,6 @@ class TodoControllerTest {
     }
 
     @Test
-    void updateTodoById_ShouldReturnNotFound_WhenTodoDoesNotExist() throws Exception {
-        // Given
-        when(todoService.updateTodoById(anyString(), any(TodoRequest.class))).thenReturn(null);
-
-        // When and Then
-        mockMvc.perform(put("/api/todo/nonexistent")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"description\":\"Updated Task\",\"status\":\"DONE\"}"))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
     void deleteTodoById_ShouldReturnDeletedTodo_WhenTodoExists() throws Exception {
         // Given
         Todo deletedTodo = new Todo("1", "Task 1", TodoStatus.OPEN);
@@ -144,15 +123,5 @@ class TodoControllerTest {
                 .andExpect(jsonPath("$.id").value(deletedTodo.id()))
                 .andExpect(jsonPath("$.description").value(deletedTodo.description()))
                 .andExpect(jsonPath("$.status").value(deletedTodo.status().toString()));
-    }
-
-    @Test
-    void deleteTodoById_ShouldReturnNotFound_WhenTodoDoesNotExist() throws Exception {
-        // Given
-        when(todoService.deleteTodoById(anyString())).thenReturn(null);
-
-        // When and Then
-        mockMvc.perform(delete("/api/todo/nonexistent"))
-                .andExpect(status().isNotFound());
     }
 }

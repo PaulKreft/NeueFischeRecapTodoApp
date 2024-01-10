@@ -6,6 +6,8 @@ import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
@@ -73,7 +75,7 @@ class TodoServiceTest {
         // Given
         String todoId = "1";
         Todo expectedTodo = new Todo(todoId, "Task 1", TodoStatus.OPEN);
-        when(todoRepository.getTodoById(todoId)).thenReturn(expectedTodo);
+        when(todoRepository.getTodoById(todoId)).thenReturn(Optional.of(expectedTodo));
 
         // When
         Todo result = todoService.getTodoById(todoId);
@@ -83,16 +85,13 @@ class TodoServiceTest {
     }
 
     @Test
-    void getTodoById_ShouldReturnNull_WhenTodoDoesNotExist() {
+    void getTodoById_ShouldThrowNoSuchElementException_WhenTodoDoesNotExist() {
         // Given
         String todoId = "nonexistent";
-        when(todoRepository.getTodoById(todoId)).thenReturn(null);
+        when(todoRepository.getTodoById(todoId)).thenReturn(Optional.empty());
 
-        // When
-        Todo result = todoService.getTodoById(todoId);
-
-        // Then
-        assertNull(result);
+        // When and Then
+        assertThrows(NoSuchElementException.class, () -> todoService.getTodoById(todoId));
     }
 
     @Test
@@ -116,7 +115,7 @@ class TodoServiceTest {
         String todoId = "1";
         TodoRequest updatedTodoRequest = new TodoRequest("Updated Task", TodoStatus.DONE);
         Todo existingTodo = new Todo(todoId, "Task 1", TodoStatus.OPEN);
-        when(todoRepository.updateTodoById(todoId, updatedTodoRequest)).thenReturn(existingTodo);
+        when(todoRepository.updateTodoById(todoId, updatedTodoRequest)).thenReturn(Optional.of(existingTodo));
 
         // When
         Todo result = todoService.updateTodoById(todoId, updatedTodoRequest);
@@ -126,17 +125,14 @@ class TodoServiceTest {
     }
 
     @Test
-    void updateTodoById_ShouldReturnNull_WhenTodoDoesNotExist() {
+    void updateTodoById_ShouldThrowNoSuchElementException_WhenTodoDoesNotExist() {
         // Given
         String todoId = "nonexistent";
         TodoRequest updatedTodoRequest = new TodoRequest("Updated Task", TodoStatus.DONE);
-        when(todoRepository.updateTodoById(todoId, updatedTodoRequest)).thenReturn(null);
+        when(todoRepository.updateTodoById(todoId, updatedTodoRequest)).thenReturn(Optional.empty());
 
-        // When
-        Todo result = todoService.updateTodoById(todoId, updatedTodoRequest);
-
-        // Then
-        assertNull(result);
+        // When and Then
+        assertThrows(NoSuchElementException.class, () -> todoService.updateTodoById(todoId, updatedTodoRequest));
     }
 
     @Test
@@ -144,7 +140,7 @@ class TodoServiceTest {
         // Given
         String todoId = "1";
         Todo existingTodo = new Todo(todoId, "Task 1", TodoStatus.OPEN);
-        when(todoRepository.getTodoById(todoId)).thenReturn(existingTodo);
+        when(todoRepository.getTodoById(todoId)).thenReturn(Optional.of(existingTodo));
 
         // When
         Todo result = todoService.deleteTodoById(todoId);
@@ -155,16 +151,13 @@ class TodoServiceTest {
     }
 
     @Test
-    void deleteTodoById_ShouldReturnNull_WhenTodoDoesNotExist() {
+    void deleteTodoById_ShouldThrowNoSuchElementException_WhenTodoDoesNotExist() {
         // Given
         String todoId = "nonexistent";
-        when(todoRepository.getTodoById(todoId)).thenReturn(null);
+        when(todoRepository.getTodoById(todoId)).thenReturn(Optional.empty());
 
-        // When
-        Todo result = todoService.deleteTodoById(todoId);
-
-        // Then
-        assertNull(result);
+        // When and Then
+        assertThrows(NoSuchElementException.class, () -> todoService.deleteTodoById(todoId));
         verify(todoRepository, never()).removeTodoById(todoId);
     }
 }

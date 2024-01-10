@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +20,13 @@ public class TodoService {
     }
 
     public Todo getTodoById(String id) {
-        return todoRepository.getTodoById(id);
+        Optional<Todo> todo = todoRepository.getTodoById(id);
+
+        if (todo.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+
+        return todo.get();
     }
 
     public Todo addTodo(TodoRequest todoRequest) {
@@ -29,17 +37,25 @@ public class TodoService {
     }
 
     public Todo updateTodoById(String id, TodoRequest todoRequest) {
-        return todoRepository.updateTodoById(id, todoRequest);
+        Optional<Todo> updatedTodo = todoRepository.updateTodoById(id, todoRequest);
+
+        if (updatedTodo.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        
+        return updatedTodo.get();
     }
 
 
     public Todo deleteTodoById(String id) {
-        Todo deletedTodo = todoRepository.getTodoById(id);
+        Optional<Todo> deletedTodo = todoRepository.getTodoById(id);
 
-        if (deletedTodo != null) {
-            todoRepository.removeTodoById(id);
+        if (deletedTodo.isEmpty()) {
+            throw new NoSuchElementException();
         }
 
-        return deletedTodo;
+        todoRepository.removeTodoById(id);
+
+        return deletedTodo.get();
     }
 }
