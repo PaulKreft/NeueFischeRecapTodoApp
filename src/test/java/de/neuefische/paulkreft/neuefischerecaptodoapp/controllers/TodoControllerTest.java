@@ -10,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -77,7 +74,6 @@ class TodoControllerTest {
     @Test
     void addTodo_ShouldReturnAddedTodo() throws Exception {
         // Given
-        TodoRequest todoRequest = new TodoRequest("New Task", TodoStatus.OPEN);
         Todo addedTodo = new Todo("1", "New Task", TodoStatus.OPEN);
         when(todoService.addTodo(any(TodoRequest.class))).thenReturn(addedTodo);
 
@@ -95,7 +91,6 @@ class TodoControllerTest {
     @Test
     void updateTodoById_ShouldReturnUpdatedTodo_WhenTodoExists() throws Exception {
         // Given
-        TodoRequest todoRequest = new TodoRequest("Updated Task", TodoStatus.DONE);
         Todo updatedTodo = new Todo("1", "Updated Task", TodoStatus.DONE);
         when(todoService.updateTodoById(anyString(), any(TodoRequest.class))).thenReturn(updatedTodo);
 

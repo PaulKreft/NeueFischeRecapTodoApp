@@ -13,13 +13,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({NoSuchElementException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorMessage handleException(NoSuchElementException exception) {
-        return new ErrorMessage("Sorry, no such element exists.");
+        return new ErrorMessage(exception.getMessage());
     }
 
     @ExceptionHandler({Exception.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleException(Exception exception) {
-        System.out.println(exception);
-        return new ErrorMessage("Sorry, no such element exists.");
+        return new ErrorMessage(exception.getMessage());
     }
 }
