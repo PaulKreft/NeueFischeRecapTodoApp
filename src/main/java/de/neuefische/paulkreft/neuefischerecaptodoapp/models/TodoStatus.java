@@ -1,0 +1,5 @@
+package de.neuefische.paulkreft.neuefischerecaptodoapp.models;
+
+public enum TodoStatus {
+    OPEN
+}
