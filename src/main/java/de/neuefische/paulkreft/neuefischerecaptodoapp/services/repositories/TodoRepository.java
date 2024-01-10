@@ -1,4 +1,4 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.models.repositories;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories;
 
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TodoRepository {
@@ -15,30 +16,29 @@ public class TodoRepository {
         return todoList;
     }
 
-    public Todo getTodoById(String id) {
+    public Optional<Todo> getTodoById(String id) {
         return getTodos().stream()
                 .filter(todo -> todo.id().equals(id))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     public void addTodo(Todo todo) {
         todoList.add(todo);
     }
 
-    public Todo updateTodoById(String id, TodoRequest todoRequest) {
-        Todo toUpdate = getTodoById(id);
+    public Optional<Todo> updateTodoById(String id, TodoRequest todoRequest) {
+        Optional<Todo> toUpdate = getTodoById(id);
 
-        if (toUpdate == null) {
-            return null;
+        if (toUpdate.isEmpty()) {
+            return toUpdate;
         }
 
-        Todo updatedTodo = toUpdate.withDescription(todoRequest.description()).withStatus(todoRequest.status());
+        Todo updatedTodo = toUpdate.get().withDescription(todoRequest.description()).withStatus(todoRequest.status());
 
-        todoList.remove(toUpdate);
+        todoList.remove(toUpdate.get());
         todoList.add(updatedTodo);
 
-        return updatedTodo;
+        return Optional.of(updatedTodo);
     }
 
     public void removeTodoById(String id) {
