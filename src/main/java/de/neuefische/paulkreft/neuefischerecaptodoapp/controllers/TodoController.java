@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("api/todo")
@@ -21,7 +22,14 @@ public class TodoController {
 
     @GetMapping("{id}")
     public Todo getTodoById(@PathVariable String id) {
-        return todoService.getTodoById(id);
+
+        Todo todo = todoService.getTodoById(id);
+
+        if (todo == null) {
+            throw new NoSuchElementException();
+        }
+
+        return todo;
     }
 
     @PostMapping
@@ -30,12 +38,24 @@ public class TodoController {
     }
 
     @PutMapping("{id}")
-    public Todo updateTodo(@PathVariable String id, @RequestBody TodoRequest todoRequest) {
-        return todoService.updateTodoById(id, todoRequest);
+    public Todo updateTodoById(@PathVariable String id, @RequestBody TodoRequest todoRequest) {
+        Todo updatedTodo = todoService.updateTodoById(id, todoRequest);
+
+        if (updatedTodo == null) {
+            throw new NoSuchElementException();
+        }
+
+        return updatedTodo;
     }
 
     @DeleteMapping("{id}")
-    public Todo deleteTodo(@PathVariable String id) {
-        return todoService.deleteTodoById(id);
+    public Todo deleteTodoById(@PathVariable String id) {
+        Todo deletedTodo = todoService.deleteTodoById(id);
+
+        if (deletedTodo == null) {
+            throw new NoSuchElementException();
+        }
+
+        return deletedTodo;
     }
 }
