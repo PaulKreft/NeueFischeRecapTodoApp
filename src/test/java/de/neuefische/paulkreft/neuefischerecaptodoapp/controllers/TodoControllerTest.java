@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -37,6 +38,17 @@ class TodoControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(todoController)
                 .setControllerAdvice(new GlobalExceptionHandler())
                 .build();
+    }
+
+    @Test
+    void getTodos_ShouldInitiallyReturnEmptyListOfTodos() throws Exception {
+        when(todoService.getTodos()).thenReturn(new ArrayList<>());
+
+        mockMvc.perform(get("/api/todo"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"))
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isEmpty());
     }
 
     @Test
