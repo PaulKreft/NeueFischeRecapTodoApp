@@ -1,5 +1,6 @@
 package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.services;
 
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.interfaces.TodoServiceInterface;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories.TodoRepository;
