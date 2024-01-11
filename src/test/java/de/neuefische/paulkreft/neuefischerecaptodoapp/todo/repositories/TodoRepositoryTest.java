@@ -1,8 +1,8 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories;
 
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoStatus;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

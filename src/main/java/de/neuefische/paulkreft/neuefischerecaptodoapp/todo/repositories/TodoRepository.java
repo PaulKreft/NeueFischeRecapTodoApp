@@ -1,7 +1,7 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories;
 
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

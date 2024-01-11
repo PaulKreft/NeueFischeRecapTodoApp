@@ -1,4 +1,4 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.services;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.services;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,15 +9,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoStatus;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories.TodoRepository;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoStatus;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories.TodoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TodoServiceTest {
-
 
     private TodoRepository todoRepository;
     private TodoService todoService;

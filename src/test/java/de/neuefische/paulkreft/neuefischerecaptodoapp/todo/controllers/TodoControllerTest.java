@@ -1,10 +1,10 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.controllers;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.controllers;
 
-import de.neuefische.paulkreft.neuefischerecaptodoapp.exception.GlobalExceptionHandler;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoStatus;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.services.TodoService;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.exception.GlobalExceptionHandler;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoStatus;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.services.TodoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
