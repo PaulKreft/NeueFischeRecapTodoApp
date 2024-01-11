@@ -1,4 +1,4 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.models;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models;
 
 import lombok.With;
 

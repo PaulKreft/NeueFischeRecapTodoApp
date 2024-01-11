@@ -1,4 +1,4 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.exception;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.exception;
 
 import java.time.Instant;
 

@@ -1,9 +1,9 @@
-package de.neuefische.paulkreft.neuefischerecaptodoapp.integration;
+package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.controllers;
 
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.Todo;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoRequest;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.models.TodoStatus;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.services.repositories.TodoRepository;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoStatus;
+import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories.TodoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,6 +27,11 @@ public class TodoIntegrationTest {
 
     @Autowired
     private TodoRepository todoRepository;
+
+    static {
+        System.setProperty("CHATGPT_API_KEY", "someKey");
+        System.setProperty("CHATGPT_API_ORG", "someOrg");
+    }
 
     @Test
     void getTodos_ShouldReturnListOfTodos() throws Exception {
