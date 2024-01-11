@@ -3,7 +3,6 @@ package de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.Todo;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoRequest;
 import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.models.TodoStatus;
-import de.neuefische.paulkreft.neuefischerecaptodoapp.todo.repositories.TodoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
